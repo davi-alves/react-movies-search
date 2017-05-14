@@ -1,0 +1,83 @@
+@import "../util/variables"
+@import "../util/mixins"
+
+.header
+  background: $primaryColor
+  height: $headerSize
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  width: 100%
+  padding: 10px 0
+  z-index: 100
+  display: flex
+  box-shadow: 0 0 4px rgba(0, 0, 0, .14), 0 4px 8px rgba(0, 0, 0, .28)
+
+  .content
+    display: flex
+    margin: 0 auto
+    padding: 0 15px
+    width: 100%
+
+    .left, .right
+      display: flex
+
+    // TITLE
+    .left
+      flex: 0 0 250px
+
+      .title
+        margin-left: 15px
+        font-size: 22px
+        color: $textColorLight
+        line-height: $headerSize - 20
+
+    // SEARCHBAR
+    .right
+      flex: 1
+
+      .search-bar
+        background: hsla(0, 0%, 100%, .15)
+        border-radius: 3px
+        position: relative
+        display: flex
+        flex: 1
+
+        .search-bar-icon
+          display: flex
+          position: relative
+          margin: auto
+          margin-left: 10px
+          height: 40px
+          width: 40px
+
+          .search-icon:before
+            opacity: 0.2
+            content: ""
+            background: url(../images/icons/search.svg) 0 0 no-repeat
+            background-size: contain
+            height: 40px
+            width: 40px
+            display: block
+
+        form
+          width: 100%
+          display: flex
+          margin: 0
+          position: relative
+
+          input
+            color: lighten($textColorLight, 20%)
+            background: transparent
+            font-size: 16px
+            padding: 10px 20px
+            width: 100%
+            flex: 3
+            border: none
+
+            &:focus
+              outline: 0
+
+            @include placeholder
+              color: $textColorLight
