@@ -20,6 +20,11 @@ export default class MovieListItem extends React.PureComponent {
           <Poster title={item.Title} image={item.Poster} />
           <figcaption className="movie-title">{item.Title}</figcaption>
         </figure>
+        <ul className="movie-info">
+          <li>Rating: <span>{item.imdbRating}</span></li>
+          <li>Year: <span>{item.Year}</span></li>
+          <li>Genre: <span>{item.Genre}</span></li>
+        </ul>
       </article>
     );
   }

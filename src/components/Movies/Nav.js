@@ -2,9 +2,12 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import Sorter from './Sorter';
+
 export default class MoviesList extends React.PureComponent {
   static defaultProps = {
     count: 0,
+    enableSorting: true,
   };
 
   shouldComponentUpdate(nextProps) {
@@ -14,7 +17,8 @@ export default class MoviesList extends React.PureComponent {
   render() {
     return (
       <div className="list-nav">
-        <div className="results-count">{this.props.count} resultados</div>
+        <div className="results-count">{this.props.count} results</div>
+        <Sorter enabled={this.props.enableSorting} />
         <div className="list-nav-actions">
           <NavLink
             exact
@@ -35,4 +39,5 @@ export default class MoviesList extends React.PureComponent {
 
 MoviesList.propTypes = {
   count: PropTypes.number,
+  enableSorting: PropTypes.bool,
 };

@@ -1,7 +1,7 @@
 import { fork, takeLatest, call, put } from 'redux-saga/effects';
 
 import { MOVIES, updateSearchResult, toggleBusy } from '../actions/movies';
-import MovieSearchApi from '../../../../libs/MovieSearchApi';
+import MovieSearchApi from '../../../../libs/MovieApi';
 
 /**
  * Paginate search results

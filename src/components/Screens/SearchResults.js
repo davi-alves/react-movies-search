@@ -10,16 +10,19 @@ import MoviesPagination from '../Movies/Pagination';
 import {
   selectMoviesFromSearch,
   selectSearchBusyState,
+  selectSearchTotal,
 } from '../../business/modules/movies/selectors/movies';
 
 @connect(state => ({
   isBusy: selectSearchBusyState(state),
   movies: selectMoviesFromSearch(state),
+  total: selectSearchTotal(state),
 }))
 export default class SearchResults extends React.PureComponent {
   static defaultProps = {
     isBusy: false,
     movies: [],
+    total: 0,
   };
 
   shouldComponentUpdate(nextProps) {
@@ -27,11 +30,11 @@ export default class SearchResults extends React.PureComponent {
   }
 
   render() {
-    const { movies, isBusy } = this.props;
+    const { isBusy, movies, total } = this.props;
 
     return (
       <div className="list">
-        <MoviesNav count={movies.length} />
+        <MoviesNav count={total} />
         <MoviesPagination />
         <MoviesList movies={movies} emptyMessage="No movies found." busy={isBusy} />
         <MoviesPagination />
@@ -41,6 +44,7 @@ export default class SearchResults extends React.PureComponent {
 }
 
 SearchResults.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.object),
   isBusy: PropTypes.bool,
+  movies: PropTypes.arrayOf(PropTypes.object),
+  total: PropTypes.number,
 };

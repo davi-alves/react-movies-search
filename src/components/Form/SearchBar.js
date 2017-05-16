@@ -7,7 +7,7 @@ import { Observable } from 'rx';
 import '../../images/icons/search.svg';
 import Spinner from '../Util/Spinner';
 
-import MovieSearch from '../../libs/MovieSearchApi';
+import MovieSearch from '../../libs/MovieApi';
 import { toggleBusy, updateSearchResult } from '../../business/modules/movies/actions/movies';
 import { selectSearchBusyState } from '../../business/modules/movies/selectors/movies';
 
@@ -118,7 +118,7 @@ export default class SearchBar extends React.PureComponent {
           <input
             id="movie-search"
             type="search"
-            placeholder="Digite aqui para pesquisar por um filme"
+            placeholder="Type here to search for a movie"
             value={this.state.search}
             onChange={this.handleInputSearch}
           />

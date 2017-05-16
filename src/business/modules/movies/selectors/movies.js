@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
 import _omit from 'lodash/omit';
+import _sortBy from 'lodash/sortBy';
 
 /**
  * Returns all movies
@@ -48,6 +49,28 @@ export const selectSearchBusyState = createSelector(
 );
 
 /**
+ * Returns the search sorting
+ *
+ * @param {Object} state
+ * @returns
+ */
+export const selectSearchSort = createSelector(
+  selectSearch,
+  search => search.sort,
+);
+
+/**
+ * Returns the search total results
+ *
+ * @param {Object} state
+ * @returns
+ */
+export const selectSearchTotal = createSelector(
+  selectSearch,
+  search => search.total,
+);
+
+/**
  * Returns favorited movies ids
  *
  * @param {Object} state
@@ -65,7 +88,8 @@ export const selectMoviesFromSearch = createSelector(
   selectMovies,
   selectSearchResults,
   selectFavorites,
-  (movies, search, favorites) => {
+  selectSearchSort,
+  (movies, search, favorites, sort) => {
     const result = [];
     search.forEach((item) => {
       const movie = Object.assign({}, movies[item]);
@@ -75,7 +99,10 @@ export const selectMoviesFromSearch = createSelector(
       }
     });
 
-    return result;
+    if (!sort.field) return result;
+    const sortedResult = _sortBy(result, sort.field);
+
+    return sort.dist === 'asc' ? sortedResult : sortedResult.reverse();
   },
 );
 

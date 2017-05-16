@@ -7,13 +7,70 @@
     display: flex
     flex-flow: row wrap
     margin: 15px
-    min-height: 35px
+    min-height: 43px
     align-items: center
 
     .results-count
       display: flex
       flex: 1
       color: $textSecondaryColor
+
+    .sorter
+      color: $textSecondaryColor
+      display: flex
+      padding: 0 15px
+      margin-right: 30px
+      flex-flow: row wrap
+      align-items: center
+
+      .sort
+        display: flex
+        flex-flow: column wrap
+        align-items: center
+        justify-content: center
+
+      .dist
+        position: relative
+        cursor: pointer
+        width: 15px
+        height: 15px
+
+        .indicator
+          &:after
+            content: ""
+            position: absolute
+            top: 50%
+            margin-top: -3px
+            right: 10px
+            width: 0
+            height: 0
+            border-top: 6px solid #666
+            border-right: 6px solid transparent
+            border-left: 6px solid transparent
+            pointer-events: none
+
+          &.asc
+            &:after
+              border-top: none
+              border-bottom: 6px solid #666
+
+      label, select
+        color: $textSecondaryColor
+
+      label
+        font-size: 13px
+
+      select
+        appearance: none
+        background: none
+        padding: 2px 20px
+        outline: 0
+        font-size:
+
+        option
+          color: $textSecondaryColor
+          span
+            padding: 2px 10px
 
     .list-nav-actions
       display: flex
@@ -80,7 +137,19 @@
       .movie-title
         display: block
         color: $textPrimaryColor
-        text-align: center
+        text-align: left
+
+      .movie-info
+        display: flex
+        flex-flow: column wrap
+        justify-content: center
+        color: $textPrimaryColor
+
+        li
+          flex: 1
+
+          span
+            color: darken($textSecondaryColor, 20%)
         
       .favorite
         z-index: 10

@@ -5,6 +5,7 @@
   "homepage": "https://movies-search.davialves.com/",
   "dependencies": {
     "babel-eslint": "^7.2.3",
+    "bluebird": "^3.5.0",
     "immutability-helper": "^2.2.0",
     "localforage": "^1.5.0",
     "lodash": "^4.17.4",
@@ -65,7 +66,7 @@
     "whatwg-fetch": "^2.0.3"
   },
   "scripts": {
-    "start": "REACT_APP_API_KEY=d73769e5 node scripts/start.js",
+    "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "NODE_ENV=production node scripts/test.js --env=jsdom"
   }

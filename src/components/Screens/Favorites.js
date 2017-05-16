@@ -23,7 +23,7 @@ export default class Favorites extends React.PureComponent {
 
     return (
       <div className="list">
-        <MoviesNav count={movies.length} />
+        <MoviesNav count={movies.length} enableSorting={false} />
         <MoviesList movies={movies} emptyMessage="No favorites yet." />
       </div>
     );

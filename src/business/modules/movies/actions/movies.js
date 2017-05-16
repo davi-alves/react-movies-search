@@ -3,6 +3,7 @@ export const MOVIES = {
   SEARCH_RESULTS: 'MOVIES_SEARCH_RESULTS',
   SEARCH_RESULTS_PAGINATE: 'MOVIES_SEARCH_RESULTS_PAGINATE',
   TOGGLE_BUSY: 'MOVIES_TOGGLE_BUSY',
+  SORT: 'MOVIES_SORT',
 };
 
 /**
@@ -36,3 +37,12 @@ export const toggleFavorite = id => ({
  * @returns {Object}
  */
 export const toggleBusy = (flag = null) => ({ type: MOVIES.TOGGLE_BUSY, payload: flag });
+
+/**
+ * Toggle busy search
+ *
+ * @param {String|null} field
+ * @param {String|null} dist
+ * @returns {Object}
+ */
+export const sortMovies = (field, dist) => ({ type: MOVIES.SORT, payload: { field, dist } });

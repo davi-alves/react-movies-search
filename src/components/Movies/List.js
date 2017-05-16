@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import _isEqual from 'lodash/isEqual';
 
-import Item, { ItemType } from './Item';
+import Item, { ItemType } from './ListItem';
 import Empty from './Empty';
 import Spinner from '../Util/Spinner';
 

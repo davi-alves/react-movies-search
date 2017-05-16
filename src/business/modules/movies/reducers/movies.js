@@ -11,6 +11,10 @@ const INITIAL_STATE = {
     total: 0,
     page: 1,
     busy: false,
+    sort: {
+      field: null,
+      dist: null,
+    },
   },
   favorites: [],
 };
@@ -39,12 +43,12 @@ const listToMap = (list) => {
  */
 const mapSearchResults = (state, result) => {
   const movies = listToMap(result.nodes);
-  const search = {
+  const search = Object.assign({}, INITIAL_STATE.search, {
     nodes: Object.keys(movies),
     total: parseInt(result.total, 10),
     page: result.page,
     query: result.query,
-  };
+  });
 
   return update(state, { search: { $set: search }, movies: { $merge: movies } });
 };
@@ -80,6 +84,25 @@ export default (state = INITIAL_STATE, action) => {
         search: {
           busy: {
             $set: action.payload !== null ? Boolean(action.payload) : !state.search.busy,
+          },
+        },
+      });
+
+    case MOVIES.SORT:
+      return update(state, {
+        search: {
+          sort: {
+            $apply: (sort) => {
+              const { field, dist } = action.payload;
+              if (!field) return { field: null, dist: null };
+
+              const newDist = dist || (sort.dist === 'asc' ? 'desc' : 'asc');
+
+              return Object.assign({}, {
+                field,
+                dist: field !== sort.field ? sort.dist : newDist,
+              });
+            },
           },
         },
       });
